@@ -1,3 +1,4 @@
+AC_PREREQ([2.62])
 AC_INIT([patchelf], m4_esyscmd([printf $(cat ./version)]))
 AC_CONFIG_SRCDIR([src/patchelf.cc])
 AC_CONFIG_AUX_DIR([build-aux])
@@ -13,7 +14,7 @@ AC_ARG_WITH([page-size],
 )
 
 if test "$PAGESIZE" = auto; then
-    if command -v getconf >/dev/null; then
+    if type -p getconf &>/dev/null; then
         PAGESIZE=$(getconf PAGESIZE || getconf PAGE_SIZE)
     fi
     if test "$PAGESIZE" = auto -o -z "$PAGESIZE"; then
